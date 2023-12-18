@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'drone_app.css')}}" />
+    <!--{{ url_for('static', filename='drone_app.css')}}-->
+        <script
+          src="https://kit.fontawesome.com/f71fe61447.js"
+          crossorigin="anonymous"
+        ></script>
+        <script src="{{ url_for('static', filename = 'midcake.js')}}"></script>
+        <!--{{ url_for('static', filename='midcake.js')}}-->
+        <title></title>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="form-house-modal" id="form-modal">
+        <div class="alert" id="error-house">
+          <h1>{{ error }}</h1>
+          <div class="alert-content">
+            <span
+              class="close-btn"
+              onclick="document.getElementById('error-house').style.display = 'none'"
+              >&times;</span
+            >
+            <p id="text-error"></p>
+          </div>
+        </div>
+        <span class="cancel" onclick="cancelFunc()">&times;</span>
+        <div class="form-house-content">
+          <div class="form-writing">
+            <div class="form-header">
+              <div class="form-header-content">
+                <p>sign in to play and mix to cool song</p>
+                <button class="login" onclick="openlogin()" id="changeBox">
+                  Log in
+                </button>
+                <button
+                  class="login signin"
+                  onclick="opensignin()"
+                  id="changeBox2"
+                >
+                  sign in
+                </button>
+              </div>
+            </div>
+            <div class="form-valider">
+              <form
+                method="POST"
+                onsubmit="return validateForm()"
+                id="formted1"
+              >
+                <div class="form-content">
+                  <h1 class="header-textor">Sign In</h1>
+                  <div class="input-container">
+                    <label>full name</label>
+                    <input type="text" class="text-inp" name="name1" id="valid" />
+                  </div>
+  
+                  <div class="input-container">
+                    <label>email</label>
+                    <input
+                      type="email"
+                      class="text-inp"
+                      name="email1"
+                      id="valid"
+                    />
+                  </div>
+  
+                  <div class="input-container">
+                    <label>password</label>
+                    <input
+                      type="password"
+                      class="text-inp"
+                      name="pass1"
+                      id="valid"
+                    />
+                  </div>
+  
+                  <div class="input-container">
+                    <label>confirm password</label>
+                    <input
+                      type="password"
+                      class="text-inp"
+                      name="pass2"
+                      id="valid"
+                    />
+                  </div>
+                  <input type="submit" onclick="sendSignUpData()" value="sign in" class="submit" />
+                </div>
+              </form>
+  
+              <form
+                method="POST"
+                onsubmit="return validateForm2()"
+                class="formid2"
+                id="formted"
+              >
+                <div class="form-content">
+                  <h1 class="header-textor">Log In</h1>
+                  <div class="input-container">
+                    <label>email</label>
+                    <input
+                      type="email"
+                      class="text-inp"
+                      name="email2"
+                      id="valid2"
+                    />
+                  </div>
+  
+                  <div class="input-container">
+                    <label>password</label>
+                    <input
+                      type="password"
+                      class="text-inp"
+                      name="pass1"
+                      id="valid2"
+                    />
+                  </div>
+  
+                  <input type="submit" onclick="sendLogInData()" value="log in" class="submit" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+<script>
+  var socket = io.connect("http://127.0.0.1:5000");
+
+  function sendSignUpData() {
+    var form = new FormData(document.getElementById("formted1"));
+
+    fetch("http://127.0.0.1:5000/register", {
+      method: "POST",
+      body: form,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+</script>
+<script>
+  var socket = io.connect("http://127.0.0.1:5000");
+
+  function sendLogInData() {
+    var form = new FormData(document.getElementById("formted"));
+
+    fetch("http://127.0.0.1:5000/login", {
+      method: "POST",
+      body: form,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+</script>
+</html>

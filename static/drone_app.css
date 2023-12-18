@@ -1,0 +1,560 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: roboto;
+  src: url(family/Roboto-Black.ttf);
+}
+
+body {
+  background-color: white;
+  font-family: sans-serif;
+}
+
+.alert {
+    background-color: rgba(255, 0, 0, 0.603);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 35%;
+    padding: 10px 14px;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.alert-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+#text-error {
+    color: white;
+    text-transform: capitalize;
+}
+
+/* The close button */
+.close-btn {
+    font-weight: bold;
+    color: white;
+    font-size: 25px;
+}
+/*form modal*/
+
+.formid2 {
+  display: none;
+  margin-top: 18vh;
+}
+
+.form-house-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/*cancel*/
+.cancel {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.form-house-content {
+  margin: 5% auto 15% auto;
+  width: 80%;
+  border-radius: 50px;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-writing {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 80vh;
+}
+
+.form-header {
+  flex: 50%;
+  background-color: dodgerblue;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  overflow: auto;
+}
+
+.form-header::-webkit-scrollbar {
+  width: 12px;
+}
+
+.form-header::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.form-valider {
+  flex: 50%;
+  background-color: white;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.form-content {
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.header-textor {
+  font-family: roboto;
+  margin: 10px;
+}
+
+.form-header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28vh;
+}
+
+.form-header-content p {
+  font-size: 50px;
+  color: white;
+  font-family: roboto;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.login {
+  width: 200px;
+  padding: 10px 14px;
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: 0.5s;
+}
+
+.signin {
+  display: none;
+}
+
+.login:hover {
+  background-color: black;
+  color: white;
+}
+
+label {
+  text-transform: capitalize;
+  float: left;
+  font-weight: bold;
+}
+
+.text-inp {
+  width: 100%;
+  line-height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  outline: none;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+
+.text-inp:focus {
+  border: 2px solid black;
+}
+
+.submit {
+  width: 200px;
+  border-radius: 50px;
+  color: black;
+  background-color: white;
+  padding: 10px 14px;
+  border: none;
+  cursor: pointer;
+  font-family: roboto;
+  font-size: 20px;
+  text-transform: capitalize;
+  outline: none;
+  transition: 0.5s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.submit:hover {
+  background-color: black;
+  color: white;
+}
+
+/*main-content*/
+.main-content {
+  padding: 10px;
+}
+
+.container-content {
+  background-color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100vh;
+}
+
+/*sidenav*/
+.bar-content {
+  flex: 30%;
+  background-color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
+  border-radius: 10px;
+  overflow: auto;
+  padding: 10px 14px;
+}
+
+/*cuting*/
+
+/* logo content */
+.logo-content {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.fa-home,
+.fa-plus {
+  font-size: 30px;
+  color: dodgerblue;
+  padding-right: 30px;
+  padding-top: 8px;
+}
+
+.logo-content h2 {
+  text-transform: capitalize;
+  font-family: roboto;
+  margin-left: 3px;
+}
+
+ul a {
+  text-decoration: none;
+}
+
+/*playlist*/
+
+.playlist-box {
+  margin-top: 3vh;
+  width: 100%;
+  max-width: 500px;
+  background-color: rgb(40, 137, 235);
+  border-radius: 10px;
+  padding: 20px 24px;
+  color: white;
+  height: 200px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.list-text {
+  padding-top: 20px;
+  text-transform: capitalize;
+}
+
+.filelabel {
+  background-color: white;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-weight: lighter;
+  cursor: pointer;
+  margin: 10px 5px;
+  width: 200px;
+  text-align: center;
+}
+
+#fileInputin {
+  opacity: 0;
+}
+
+#audioPlayer {
+  opacity: 0;
+  height: 0;
+}
+
+/*Mood Box*/
+.mood-box {
+  margin-top: 3vh;
+  width: 100%;
+  max-width: 500px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.text-mood {
+  color: white;
+  background-color: rgb(40, 137, 235);
+  padding: 10px 14px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.mood-place {
+  padding: 10px 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+
+
+.moods {
+  padding: 10px 14px;
+}
+
+/*music logo*/
+.fa-music {
+  padding: 5px;
+  background-color: white;
+  border-radius: 50px;
+}
+/*body container*/
+.body-container {
+  flex: 70%;
+  background-color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+/*main header*/
+
+.main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  color: white;
+  background-color: rgb(40, 137, 235);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+/*icon*/
+.iconic-header {
+  display: flex;
+  justify-content: space-between;
+  width: 130px;
+}
+
+.fa-circle-chevron-left, .fa-circle-chevron-right {
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.nocolor {
+  color: white;
+  background: transparent;
+}
+
+.buttons-head {
+  padding: 10px;
+  display: flex;
+}
+
+.fa-circle-user {
+  font-size: 30px;
+  color: white;
+}
+
+.name {
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+}
+
+/*audio elements*/
+
+.audio-element {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5vh;
+}
+
+.audio-home-place {
+  background: rgb(44, 131, 219);
+  height: auto;
+  border-radius: 20px;
+  padding: 10px 14px;
+  width: 60%;
+}
+
+/*default img*/
+
+.img {
+  background: linear-gradient(to right, black, rgba(0, 0, 0, 0.438));
+  height: 150px;
+  width: 150px;
+  border-radius: 7px;
+}
+
+.title-header {
+  text-transform: capitalize;
+  color: white;
+}
+
+.audio-plate {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title-header {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+}
+
+.audio-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*player controls*/
+.play-button {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  color: white;
+  justify-content: space-between;
+}
+
+.fa-circle-play {
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.fa-backward,
+.fa-forward {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.slider {
+  width: 80%;
+  appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background: white; /* Background color of the slider track */
+  outline: none;
+  margin: 15px 0;
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  outline: 4px solid white;
+  border-radius: 50%;
+  background: dodgerblue; /* Color of the slider thumb */
+  cursor: pointer;
+}
+
+.slider:focus {
+  outline: none;
+}
+
+.volume-control {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.volume-slider {
+  width: 50%;
+  appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background: white; /* Background color of the slider track */
+  outline: none;
+  -webkit-appearance: none;
+  margin: 10px 20px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white; /* Color of the slider thumb */
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: white;
+}
+
+.volume-high, .volume-low {
+  color: rgba(255, 255, 255, 0.425);
+}
+
+.playlist-content input[type="file"] {
+  height: 20px;
+  border: none;
+}

@@ -1,0 +1,199 @@
+screen_helper = """
+ScreenManager:
+    HomeScreen:
+    AddScreen:
+    PlaylistScreen:
+
+
+<HomeScreen>:
+    name: 'Home'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: '#00000'
+
+        MDScrollView:
+            MDGridLayout:
+                cols: 1
+
+                MDBoxLayout: 
+                    orientation: 'vertical' 
+
+                    MDCard:
+                        size_hint_y: None
+                        height: '200dp'
+                        md_bg_color: "red" 
+                        radius: 0, 0, 10, 10 
+
+                        MDBoxLayout:
+                            adaptive_height: True
+                            
+                            MDIconButton:
+                                Image:
+                                    source: 'music.png'
+                                    size_hint: (1.7, 1.7)
+        MDBoxLayout:
+            size_hint_y: 0.1
+            radius: 24
+            MDBottomNavigation:
+                panel_color: .2, .2, .2, 1
+                buttom_border_radius: 20 
+
+                MDBottomNavigationItem:             
+                    icon: 'home'
+                    on_tab_press: app.on_tab_press('home')
+
+                MDBottomNavigationItem:
+                    icon: 'plus'
+                    on_tab_press: app.on_tab_press('addSong')
+
+                MDBottomNavigationItem:
+                    icon: 'music-note'
+                    on_tab_press: app.on_tab_press('playlist')
+
+<AddScreen>:
+    name: 'add'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDBoxLayout:
+            orientation: 'vertical'
+            md_bg_color: '#00000'
+            padding: (0, 0, 0, 200)
+            MDLabel:
+                color: 'white'
+                text: 'Introducing the MAST share Button! This user-friendly feature empowers you to effortlessly select and contribute audio files to our shared app database.'
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: (20, 200, 20, 30)
+
+            MDRectangleFlatButton:
+                text: 'add song'
+                pos_hint: {'center_x': 0.5}
+                on_press: app.getaudio()
+                padding: (10, 5)
+        MDBoxLayout:
+            size_hint_y: 0.1
+            radius: 24
+            MDBottomNavigation:
+                panel_color: .2, .2, .2, 1
+                buttom_border_radius: 20 
+
+                MDBottomNavigationItem:             
+                    icon: 'home'
+                    on_tab_press: app.on_tab_press('home')
+
+                MDBottomNavigationItem:
+                    icon: 'plus'
+                    on_tab_press: app.on_tab_press('addSong')
+
+                MDBottomNavigationItem:
+                    icon: 'music-note'
+                    on_tab_press: app.on_tab_press('playlist')
+        
+            
+
+
+<PlayListItem@MDCard>:
+    size_hint_y: None
+    height: '72dp'
+    md_bg_color: '#262626'
+    radius: 15 
+    
+    
+
+
+<PlaylistScreen>:
+    orientation: 'vertical'
+    name: 'playlist'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: '#000000'
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDScrollView:
+                MDGridLayout:
+                    cols: 1
+                    adaptive_height: True
+                    padding: 0, '24dp', 0, '24dp'
+                    spacing: '15dp'
+                    padding: (10, 0, 10, 0)
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: 'PLAYLIST'
+                            bold: True
+                            color: '#ffffff'
+                            halign: 'left'
+                            font_style: 'H5'
+                    PlayListItem:
+                        on_press: app.root.current = 'Home'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            padding: (20, 1, 0, 0)
+
+                            MDLabel:
+                                text: 'playlist name'
+                                bold: True
+                                color: '#ffffff'
+                                halign: 'left'
+                                font_style: 'H6'
+                    PlayListItem:
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            padding: (20, 1, 0, 0)
+
+                            MDLabel:
+                                text: 'playlist name'
+                                bold: True
+                                color: '#ffffff'
+                                halign: 'left'
+                                font_style: 'H6'
+                    PlayListItem:
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            padding: (20, 1, 0, 0)
+
+                            MDLabel:
+                                text: 'playlist name'
+                                bold: True
+                                color: '#ffffff'
+                                halign: 'left'
+                                font_style: 'H6'
+                    PlayListItem:
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            padding: (20, 1, 0, 0)
+
+                            MDLabel:
+                                text: 'playlist name'
+                                bold: True
+                                color: '#ffffff'
+                                halign: 'left'
+                                font_style: 'H6'
+
+
+            MDBoxLayout:
+                size_hint_y: 0.1
+                radius: 24
+                MDBottomNavigation:
+                    panel_color: .2, .2, .2, 1
+                    buttom_border_radius: 20 
+
+                    MDBottomNavigationItem:             
+                        icon: 'home'
+                        on_tab_press: app.on_tab_press('home')
+
+                    MDBottomNavigationItem:
+                        icon: 'plus'
+                        on_tab_press: app.on_tab_press('addSong')
+
+                    MDBottomNavigationItem:
+                        icon: 'music-note'
+                        on_tab_press: app.on_tab_press('playlist')
+"""

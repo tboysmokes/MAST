@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename ='drone_app.css')}}" />
+  <!--{{ url_for('static', filename='drone_app.css')}}-->
+  <script src="https://kit.fontawesome.com/f71fe61447.js" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename = 'midcake.js')}}"></script>
+  <!--{{ url_for('static', filename='midcake.js')}}-->
+  <script src="{{ url_for('static', filename = 'storage.js')}}"></script>
+  <title></title>
+</head>
+<script>
+
+</script>
+
+<body>
+  <!--form place-->
+
+  <!--main-container-->
+  <div class="main-container">
+    <!--container-content-->
+    <div class="container-content">
+      <!--sidenav-->
+      <div class="bar-content">
+        <div class="sidenav">
+          <ul>
+            <!--logo-content-->
+            <div class="logo-content">
+              <i class="fa fa-music"></i>
+              <h2>audio</h2>
+            </div>
+            <a href=""> <i class="fa fa-home"></i></a>
+            <a href=""><i class="fa fa-plus"></i></a>
+          </ul>
+          <!--Play list box-->
+          <div class="playlist-box">
+            <div class="playlist-content">
+              <h2 class="playlist">Add music</h2>
+              <p class="list-text">add your audio from internal storage.</p>
+              <label class="filelabel" onclick="createPlayList()">Create Playlist</label>
+              <input type="file" id="audioFileInput" name="audioFileInput" accept=".mp4, .mp3, .wav" multiple />
+              <button type="button" onclick="uploadAudio()">create ablum</button>
+
+              <audio controls id="audioPlayer">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          </div>
+
+          <div class="mood-box">
+            <div class="mood-box-content">
+              <h1 class="text-mood">Your Mood</h1>
+
+
+              <button class="playsadsong">&#128522;sad</button>
+              <button class="playmotivatedsong">&#128522;motivated</button>
+            </div>
+          </div>
+        </div>
+        <!--sidenav-cutting-->
+      </div>
+
+      <div class="body-container">
+        <div class="body-content">
+          <div class="main-header">
+            <div class="iconic-header">
+              <i class="fa fa-circle-chevron-left index" onclick="toggleDivs()" id="chevron-left"></i>
+              <i class="fa fa-circle-chevron-right index" id="chevron-right" onclick="toggleDivs()"
+                style="display: none"></i>
+            </div>
+
+            <div class="buttons-head" onclick="openFunc()">
+              <p id="fullNames" class="name"></p>
+              <a href="{{ url_for('register')}}"><i class="fa fa-circle-user"></i></a>
+            </div>
+          </div>
+          <div class="audio-element" id="div1">
+            <div class="audio-home-place" id="audio-home">
+              <div class="audio-home-container">
+                <div class="audio-plate">
+                  <div class="img"></div>
+                  <div class="title-header">
+                    <div class="song-name" id="current-song-name">
+                      Musician
+                    </div>
+                    <div class="title-song" id="current-title-name">
+                      Name of Song
+                    </div>
+                  </div>
+                </div>
+                <div class="audio-controls">
+                  <div class="time-display">
+                    <div class="current-time" id="current-time">0:00</div>
+                    <input type="range" name="" id="progress-bar" min="0" max="100" value="0" class="slider" />
+                    <div class="previous-time" id="previous-time">0:00</div>
+                  </div>
+                  <div class="play-button">
+                    <i class="fa fa-backward" onclick="previousSong()"></i>
+                    <i class="fa fa-circle-play fa-4x" id="play-pause" onclick="playMusic()"></i>
+                    <i class="fa fa-forward" onclick="nextSong()"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="another-audio-element" id="div2" style="display: none">
+            <h1>Hi</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="musicPlayer" src="{{ url_for('static', filename = 'musicF/'+audio)}}" ></audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+  integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+  crossorigin="anonymous"></script>
+  <script>
+  var socket = io.connect("http://127.0.0.1:5000");
+
+  function uploadAudio() {
+    var fileInput = document.getElementById("audioFileInput");
+    var file = fileInput.files[0];
+
+    fetch("http://127.0.0.1:5000/add", {
+      method: "POST",
+      body: file,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  </script>
+  <script>
+  function playMusic() {
+    const audioPlayer = document.getElementById('musicPlayer');
+    audioPlayer.play();
+  }
+
+  function pauseMusic() {
+    const audioPlayer = document.getElementById('musicPlayer');
+    audioPlayer.pause();
+  }
+  </script>
+</body>
+</html>
