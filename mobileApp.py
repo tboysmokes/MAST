@@ -1,7 +1,7 @@
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
-from SreenSaver import screen_helper
+from ScreenSaver import screen_helper
 from kivy.uix.filechooser import FileChooser
 
 
