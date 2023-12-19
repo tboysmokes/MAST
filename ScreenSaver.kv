@@ -1,9 +1,8 @@
-screen_helper = """
 ScreenManager:
     HomeScreen:
     AddScreen:
     PlaylistScreen:
-    CreatePlaylist:
+    CreatePlaylistScreen:
 
     
 <homePlayList@MDCard>
@@ -52,7 +51,7 @@ ScreenManager:
                             adaptive_height: True
                             
                             MDLabel:
-                                text: 'Available mood playlist'
+                                text: 'Available playlist'
                                 color: '#ffffff'
                                 size_hint_y: None
                                 height: self.texture_size[1]
@@ -232,5 +231,5 @@ ScreenManager:
 
 
 
-<CreatePlaylist>:
-"""
+<CreatePlaylistScreen>:
+    name: 'createPlaylist'
