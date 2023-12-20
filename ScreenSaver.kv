@@ -70,17 +70,39 @@ ScreenManager:
 
                         homePlayList:
                             MDBoxLayout:
-                                spacing: '5dp'
+                                padding: (20, 0, 0, 0)
                                 Image:
                                     source: 'static/happy.png'
                             MDBoxLayout:
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                MDLabel:
+                                    text: 'play now'
+                                    color: 'white'
+                                    font_style: 'Caption'
+
+                        homePlayList:
+                            MDBoxLayout:
+                                padding: (20, 0, 0, 0)
+                                Image:
+                                    source: 'static/sadnigga.png'
+                            MDBoxLayout:
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 MDLabel:
                                     text: 'play now'
                                     color: 'white'
                                     font_style: 'Caption'
                         homePlayList:
-                        homePlayList:
+                            MDBoxLayout:
+                                padding: (20, 0, 10, 0)
+                                Image:
+                                    source: 'static/motivatednigga.png'
+                                    size_hint: (0.7, 0.7)
+                            MDBoxLayout:
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                MDLabel:
+                                    text: 'play now'
+                                    color: 'white'
+                                    font_style: 'Caption'
                         homePlayList:
 
         MDBoxLayout:
@@ -260,23 +282,28 @@ ScreenManager:
 
         MDBoxLayout:
             orientation: 'vertical'
-            MDScrollView:
-                MDGridLayout:
-                    
+            MDCard:
+                size_hint: None, None
+                size: 300, 400
+                pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+                elevation: 10
+                padding: (0, 20, 0, 20)
+                spacing: 25
+                orientation: 'vertical'
 
 
-            MDBoxLayout:
-                size_hint_y: 0.1
-                MDBottomNavigation:
-                    panel_color: .2, .2, .2, 1
-                    buttom_border_radius: 10
+        MDBoxLayout:
+            size_hint_y: 0.1
+            MDBottomNavigation:
+                panel_color: .2, .2, .2, 1
+                buttom_border_radius: 10
 
-                    MDBottomNavigationItem:
-                        icon: 'home'
-                        on_tab_press: app.root.current = 'Home'
-                    MDBottomNavigationItem:
-                        icon: 'plus'
-                        on_tab_press: app.root.current = 'add'
-                    MDBottomNavigationItem:
-                        icon: 'music-note'
-                        on_tab_press: app.root.current = 'playlsit'
+                MDBottomNavigationItem:
+                    icon: 'home'
+                    on_tab_press: app.root.current = 'Home'
+                MDBottomNavigationItem:
+                    icon: 'plus'
+                    on_tab_press: app.root.current = 'add'
+                MDBottomNavigationItem:
+                    icon: 'music-note'
+                    on_tab_press: app.root.current = 'playlsit'
