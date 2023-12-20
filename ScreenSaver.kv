@@ -3,15 +3,12 @@ ScreenManager:
     AddScreen:
     PlaylistScreen:
     CreatePlaylistScreen:
-
-    
+  
 <homePlayList@MDCard>
     size_hint_y: None
     height: '150dp'
     radius: 10
     md_bg_color: "#262626" 
-
-    
 
 <HomeScreen>:
     name: 'Home'
@@ -32,11 +29,23 @@ ScreenManager:
 
                 MDBoxLayout:
                     adaptive_height: True
+                    padding: (10, 0, 10, 0)
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.8}
                     
                     MDIconButton:
+                        on_press: app.root.current = 'Home'
                         Image:
-                            source: 'music.png'
+                            source: 'static/music.png'
                             size_hint: (1.7, 1.7)
+                    MDLabel:
+                        text: 'MAST'
+                MDBoxLayout:
+                    pos_hint: {'center_y': 0.27}
+                    Image:  
+                        source: 'static/moodgroove.png'
+                        width: '200dp'
+                        height: '150dp'
+                            
 
             MDBoxLayout:
                 MDScrollView:
@@ -57,8 +66,19 @@ ScreenManager:
                                 height: self.texture_size[1]
                                 font_style: 'Caption'
                                 padding: (0, 20, 0, 0)
+                
 
                         homePlayList:
+                            MDBoxLayout:
+                                spacing: '5dp'
+                                Image:
+                                    source: 'static/happy.png'
+                            MDBoxLayout:
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                                MDLabel:
+                                    text: 'play now'
+                                    color: 'white'
+                                    font_style: 'Caption'
                         homePlayList:
                         homePlayList:
                         homePlayList:
@@ -72,15 +92,15 @@ ScreenManager:
 
                 MDBottomNavigationItem:             
                     icon: 'home'
-                    on_tab_press: app.on_tab_press('home')
+                    on_tab_press: app.root.current = 'Home'
 
                 MDBottomNavigationItem:
                     icon: 'plus'
-                    on_tab_press: app.on_tab_press('addSong')
+                    on_tab_press: app.root.current = 'add'
 
                 MDBottomNavigationItem:
                     icon: 'music-note'
-                    on_tab_press: app.on_tab_press('playlist')
+                    on_tab_press: app.root.current = 'playlist'
 
 <AddScreen>:
     name: 'add'
@@ -92,14 +112,14 @@ ScreenManager:
             padding: (0, 0, 0, 200)
             MDLabel:
                 color: 'white'
-                text: 'Introducing the MAST share Button! This user-friendly feature empowers you to effortlessly select and contribute audio files to our shared app database.'
+                text: 'Introducing the MAST ADD Button! This user-friendly feature empowers you to effortlessly select and contribute audio files to our shared app database.'
                 halign: 'center'
                 size_hint_y: None
                 height: self.texture_size[1]
                 padding: (20, 200, 20, 30)
 
             MDRectangleFlatButton:
-                text: 'add song'
+                text: 'ADD'
                 pos_hint: {'center_x': 0.5}
                 on_press: app.getaudio()
                 padding: (10, 5)
@@ -112,15 +132,15 @@ ScreenManager:
 
                 MDBottomNavigationItem:             
                     icon: 'home'
-                    on_tab_press: app.on_tab_press('home')
+                    on_tab_press: app.root.current = 'Home'
 
                 MDBottomNavigationItem:
                     icon: 'plus'
-                    on_tab_press: app.on_tab_press('addSong')
+                    on_tab_press: app.root.current = 'addSong'
 
                 MDBottomNavigationItem:
                     icon: 'music-note'
-                    on_tab_press: app.on_tab_press('playlist')
+                    on_tab_press: app.root.current = 'playlist'
         
             
 
@@ -131,8 +151,6 @@ ScreenManager:
     md_bg_color: '#262626'
     radius: 15 
     
-    
-
 
 <PlaylistScreen>:
     orientation: 'vertical'
@@ -198,6 +216,7 @@ ScreenManager:
                                 halign: 'left'
                                 font_style: 'H6'
                     PlayListItem:
+                        on_press: app.root.current = 'createPlaylist'
                         MDBoxLayout:
                             orientation: 'vertical'
                             padding: (20, 1, 0, 0)
@@ -219,17 +238,45 @@ ScreenManager:
 
                     MDBottomNavigationItem:             
                         icon: 'home'
-                        on_tab_press: app.on_tab_press('home')
+                        on_tab_press: app.root.current = 'Home'
 
                     MDBottomNavigationItem:
                         icon: 'plus'
-                        on_tab_press: app.on_tab_press('addSong')
+                        on_tab_press: app.root.current = 'add'
 
                     MDBottomNavigationItem:
                         icon: 'music-note'
-                        on_tab_press: app.on_tab_press('playlist')
+                        on_tab_press: app.root.current = 'playlist'
 
 
 
 <CreatePlaylistScreen>:
     name: 'createPlaylist'
+    orientation: 'vertical'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: '#00000'
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDScrollView:
+                MDGridLayout:
+                    
+
+
+            MDBoxLayout:
+                size_hint_y: 0.1
+                MDBottomNavigation:
+                    panel_color: .2, .2, .2, 1
+                    buttom_border_radius: 10
+
+                    MDBottomNavigationItem:
+                        icon: 'home'
+                        on_tab_press: app.root.current = 'Home'
+                    MDBottomNavigationItem:
+                        icon: 'plus'
+                        on_tab_press: app.root.current = 'add'
+                    MDBottomNavigationItem:
+                        icon: 'music-note'
+                        on_tab_press: app.root.current = 'playlsit'
