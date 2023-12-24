@@ -3,6 +3,7 @@ ScreenManager:
     AddScreen:
     PlaylistScreen:
     CreatePlaylistScreen:
+    AudioPlayer:
   
 <homePlayList@MDCard>
     size_hint_y: None
@@ -15,96 +16,27 @@ ScreenManager:
 
     MDBoxLayout:
         orientation: 'vertical'
-        md_bg_color: '#00000'
+        md_bg_color: '#222121'
 
         MDBoxLayout: 
             orientation: 'vertical' 
-
-            MDCard:
-                size_hint_y: None
-                height: '200dp'
-                md_bg_color: "blue" 
-                radius: 0, 0, 10, 10 
-                elevation: 5
-
-                MDBoxLayout:
-                    adaptive_height: True
-                    padding: (10, 0, 10, 0)
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-                    
-                    MDIconButton:
-                        on_press: app.root.current = 'Home'
-                        Image:
-                            source: 'static/music.png'
-                            size_hint: (1.7, 1.7)
-                    MDLabel:
-                        text: 'MAST'
-                MDBoxLayout:
-                    pos_hint: {'center_y': 0.27}
-                    Image:  
-                        source: 'static/moodgroove.png'
-                        width: '200dp'
-                        height: '150dp'
-                            
-
-            MDBoxLayout:
-                MDScrollView:
-                    MDGridLayout:
-                        cols: 1
-                        adaptive_height: True
-                        spacing: '15dp'
-                        padding: (15, 0, 15, 0)
-
-                        MDBoxLayout:
-                            orientation: 'vertical'
-                            adaptive_height: True
-                            
-                            MDLabel:
-                                text: 'Available playlist'
-                                color: '#ffffff'
-                                size_hint_y: None
-                                height: self.texture_size[1]
-                                font_style: 'Caption'
-                                padding: (0, 20, 0, 0)
-                
-
-                        homePlayList:
-                            MDBoxLayout:
-                                padding: (20, 0, 0, 0)
-                                Image:
-                                    source: 'static/happy.png'
-                            MDBoxLayout:
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                MDLabel:
-                                    text: 'play now'
-                                    color: 'white'
-                                    font_style: 'Caption'
-
-                        homePlayList:
-                            MDBoxLayout:
-                                padding: (20, 0, 0, 0)
-                                Image:
-                                    source: 'static/sadnigga.png'
-                            MDBoxLayout:
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                MDLabel:
-                                    text: 'play now'
-                                    color: 'white'
-                                    font_style: 'Caption'
-                        homePlayList:
-                            MDBoxLayout:
-                                padding: (20, 0, 10, 0)
-                                Image:
-                                    source: 'static/motivatednigga.png'
-                                    size_hint: (0.7, 0.7)
-                            MDBoxLayout:
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                MDLabel:
-                                    text: 'play now'
-                                    color: 'white'
-                                    font_style: 'Caption'
-                        homePlayList:
-
+            MDLabel:
+                text: 'M.A.S.T'
+                color: 'white'
+                height: self.texture_size[1]
+                halign: 'center'
+                font_size: 40
+                bold: True
+            Image:
+                source: 'static/music.png'
+            MDLabel:
+                text: 'MAST(mood analysis sound technology) a cutting egde software designed to elevate your mood through the power of personalized music'
+                color: 'white'
+                font_size: 14
+                height: self.texture_size[1]
+                padding: (10, 0, 10, 0)
+                halign: 'center'
+           
         MDBoxLayout:
             size_hint_y: 0.1
             radius: 24
@@ -115,14 +47,20 @@ ScreenManager:
                 MDBottomNavigationItem:             
                     icon: 'home'
                     on_tab_press: app.root.current = 'Home'
+                    text: 'Home'
+                    font_size: 10
 
                 MDBottomNavigationItem:
                     icon: 'plus'
                     on_tab_press: app.root.current = 'add'
+                    text: 'add songs'
+                    font_size: 10
 
                 MDBottomNavigationItem:
                     icon: 'music-note'
                     on_tab_press: app.root.current = 'playlist'
+                    text: 'playlist'
+                    font_size: 10
 
 <AddScreen>:
     name: 'add'
@@ -130,7 +68,7 @@ ScreenManager:
         orientation: 'vertical'
         MDBoxLayout:
             orientation: 'vertical'
-            md_bg_color: '#00000'
+            md_bg_color: '#222121'
             padding: (0, 0, 0, 200)
             MDLabel:
                 color: 'white'
@@ -143,7 +81,7 @@ ScreenManager:
             MDRectangleFlatButton:
                 text: 'ADD'
                 pos_hint: {'center_x': 0.5}
-                on_press: app.getaudio()
+                on_press: app.addSong()
                 padding: (10, 5)
         MDBoxLayout:
             size_hint_y: 0.1
@@ -155,16 +93,17 @@ ScreenManager:
                 MDBottomNavigationItem:             
                     icon: 'home'
                     on_tab_press: app.root.current = 'Home'
+                    text: 'Home'
 
                 MDBottomNavigationItem:
                     icon: 'plus'
-                    on_tab_press: app.root.current = 'addSong'
+                    on_tab_press: app.root.current = 'add'
+                    text: 'add song'
 
                 MDBottomNavigationItem:
                     icon: 'music-note'
                     on_tab_press: app.root.current = 'playlist'
-        
-            
+                    text: 'playlist'
 
 
 <PlayListItem@MDCard>
@@ -172,15 +111,17 @@ ScreenManager:
     height: '72dp'
     md_bg_color: '#262626'
     radius: 15 
-    
+    line_color: .2, .2, .2, .8
+    elevation: 2
 
 <PlaylistScreen>:
+    id: 'playlist'
     orientation: 'vertical'
     name: 'playlist'
 
     MDBoxLayout:
         orientation: 'vertical'
-        md_bg_color: '#000000'
+        md_bg_color: '#222121'
 
         MDBoxLayout:
             orientation: 'vertical'
@@ -189,56 +130,71 @@ ScreenManager:
                     cols: 1
                     adaptive_height: True
                     padding: 0, '24dp', 0, '24dp'
-                    spacing: '15dp'
-                    padding: (10, 0, 10, 0)
+                    spacing: '20dp'
+                    padding: (10, 30, 10, 0)
 
                     MDBoxLayout:
-                        orientation: 'vertical'
                         adaptive_height: True
 
                         MDLabel:
+                            size_hint_y: None
                             text: 'PLAYLIST'
                             bold: True
+                            height: self.texture_size[1]
                             color: '#ffffff'
                             halign: 'left'
-                            font_style: 'H5'
+                            font_size: 20
+
+                    MDTextField:
+                        id: Searchs
+                        hint_text: 'search'
+                        icon_left: 'magnify'
+                        width: 100
+                        font_size: 13
+                        pos_hint: {'center_x': 0.5}        
 
                     PlayListItem:
-                        on_press: app.root.current = 'Home'
+                        on_press: app.auidoPlayerS('happy')
+                        md_bg_color: '#fc466b'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            padding: (10, 1, 0, 0)
+
+                            MDLabel:
+                                text: 'Happy playlist'
+                                bold: True
+                                color: '#ffffff'
+                                halign: 'left'
+                                font_size: 17
+                    PlayListItem:
+                        on_press: app.auidoPlayerS('sad')
+                        md_bg_color: '#3f5efb'
                         MDBoxLayout:
                             orientation: 'vertical'
                             padding: (20, 1, 0, 0)
 
                             MDLabel:
-                                text: 'playlist name'
+                                text: 'Sad playlist'
                                 bold: True
                                 color: '#ffffff'
                                 halign: 'left'
-                                font_style: 'H6'
+                                font_size: 17
                     PlayListItem:
+                        on_press: app.auidoPlayerS('chill')
+                        md_bg_color: '#45fc48'
                         MDBoxLayout:
                             orientation: 'vertical'
                             padding: (20, 1, 0, 0)
 
                             MDLabel:
-                                text: 'playlist name'
+                                text: 'Chill playlist'
                                 bold: True
                                 color: '#ffffff'
                                 halign: 'left'
-                                font_style: 'H6'
-                    PlayListItem:
-                        MDBoxLayout:
-                            orientation: 'vertical'
-                            padding: (20, 1, 0, 0)
-
-                            MDLabel:
-                                text: 'playlist name'
-                                bold: True
-                                color: '#ffffff'
-                                halign: 'left'
-                                font_style: 'H6'
+                                font_size: 17
                     PlayListItem:
                         on_press: app.root.current = 'createPlaylist'
+                        md_bg_color: '#706e40'
                         MDBoxLayout:
                             orientation: 'vertical'
                             padding: (20, 1, 0, 0)
@@ -248,7 +204,7 @@ ScreenManager:
                                 bold: True
                                 color: '#ffffff'
                                 halign: 'left'
-                                font_style: 'H6'
+                                font_size: 17
 
 
             MDBoxLayout:
@@ -257,53 +213,228 @@ ScreenManager:
                 MDBottomNavigation:
                     panel_color: .2, .2, .2, 1
                     buttom_border_radius: 20 
-
+                    
                     MDBottomNavigationItem:             
                         icon: 'home'
                         on_tab_press: app.root.current = 'Home'
+                        text: 'Home'
 
                     MDBottomNavigationItem:
                         icon: 'plus'
                         on_tab_press: app.root.current = 'add'
+                        text: 'add song'
 
                     MDBottomNavigationItem:
                         icon: 'music-note'
                         on_tab_press: app.root.current = 'playlist'
+                        text: 'playlist'
 
 
 
 <CreatePlaylistScreen>:
+    id: 'createPlaylist'
     name: 'createPlaylist'
     orientation: 'vertical'
 
     MDBoxLayout:
         orientation: 'vertical'
-        md_bg_color: '#00000'
+        md_bg_color: '#222121'
 
         MDBoxLayout:
             orientation: 'vertical'
+            padding: (0, 30, 0, 0)
+
             MDCard:
                 size_hint: None, None
-                size: 300, 400
-                pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-                elevation: 10
-                padding: (0, 20, 0, 20)
-                spacing: 25
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                size: 280, 450
+                md_bg_color: '#262626'
+                elevation: 2
+                padding: 25
                 orientation: 'vertical'
+                MDScrollView:
+                    MDGridLayout:
+                        adaptive_height: True
+                        cols: 1
+                        MDBoxLayout:
+                            id: type_parm
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            spacing: '15dp'
+                            MDLabel:
+                                id: playlist_label
+                                text: 'Create Playlist'
+                                bold: True
+                                color: 'white'
+                                halign: 'center'
+                                size_hint_y: None
+                                font_size: 20
+                                height: self.texture_size[1]
+                            MDTextField:
+                                id: playlist_names
+                                hint_text: 'playlist name'
+                                helper_text: "happy playlist"
+                                icon_right: 'account'
+                                size_hint_x: None
+                                width: 200
+                                font_size: 13
+                                pos_hint: {'center_x': 0.5}
+                            MDTextField:
+                                id: parm_one
+                                hint_text: 'Rhythm'
+                                helper_text: "low -> medium -> high"
+                                icon_right: 'music-note'
+                                size_hint_x: None
+                                width: 200
+                                font_size: 13
+                                pos_hint: {'center_x': 0.5}
+                            MDTextField:
+                                id: parm_two
+                                hint_text: 'Pitch'
+                                helper_text: "low -> medium -> high"
+                                icon_right: 'music-note'
+                                size_hint_x: None
+                                width: 200
+                                font_size: 13
+                                pos_hint: {'center_x': 0.5}
+                            MDTextField:
+                                id: parm_three
+                                hint_text: 'Tempo'
+                                helper_text: "slow -> fast"
+                                icon_right: 'music-note'
+                                size_hint_x: None
+                                width: 200
+                                font_size: 13
+                                pos_hint: {'center_x': 0.5}
 
+                            MDRectangleFlatButton:
+                                text: 'create'
+                                pos_hint: {'center_x': 0.5}
+                                on_press: app.createplaylistfu('typed_parm')
+                                padding: (20, 10)
 
+                        MDBoxLayout:
+                            id: uploadAudio
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            spacing: '15dp'
+                            MDLabel:
+                                padding: (0, 10, 0, 10)
+                                halign: 'center'
+                                text: 'OR'
+                                font_size: 20
+                                color: 'white'
+                                bold: True
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                            MDTextField:
+                                id: playlistnames
+                                hint_text: 'playlist name'
+                                helper_text: "happy playlist"
+                                icon_right: 'account'
+                                size_hint_x: None
+                                width: 200
+                                font_size: 13
+                                pos_hint: {'center_x': 0.5}
+                                padding: (0, 0, 0, 20)
+
+                            MDRectangleFlatButton:
+                                text: 'Upload'
+                                size_hint_x: None
+                                pos_hint: {'center_x': 0.5}
+
+                                padding: (20, 10)
+                            MDRectangleFlatButton:
+                                text: 'create'
+                                size_hint_x: None
+                                pos_hint: {'center_x': 0.5}
+                                on_press: app.createplaylistfu('upload')
+                                padding: (20, 10)
+            Widget:
+                size_hint_y: None
+                height: '50dp'
         MDBoxLayout:
             size_hint_y: 0.1
             MDBottomNavigation:
                 panel_color: .2, .2, .2, 1
                 buttom_border_radius: 10
-
                 MDBottomNavigationItem:
                     icon: 'home'
                     on_tab_press: app.root.current = 'Home'
+                    text: 'Home'
                 MDBottomNavigationItem:
                     icon: 'plus'
                     on_tab_press: app.root.current = 'add'
+                    text: 'add song'
                 MDBottomNavigationItem:
                     icon: 'music-note'
-                    on_tab_press: app.root.current = 'playlsit'
+                    on_tab_press: app.root.current = 'playlist'
+                    text: 'playlist'
+
+<AudioName@MDCard>
+    md_bg_color: '#222121'
+    line_color: .2, .2, .2, .5
+    size_hint_y: None
+    height: '70dp'
+    MDLabel:
+        id: muiscname
+        text: 'music name is ahhahhhhhhh'
+        color: 'white'
+
+<AudioPlayer>:
+    id: 'audio_player'
+    name: 'audio_player'
+    orientation: 'vertical'
+    MDBoxLayout:
+        md_bg_color: '#222121'
+        MDBoxLayout:
+            MDScrollView:
+                MDGridLayout:
+                    adaptive_height: True
+                    spacing: '20dp'
+                    cols: 1
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        MDCard:
+                            padding: (30, 30, 30, 30)
+                            md_bg_color: '#3f5efb'
+                            radius: 0, 0, 10, 10
+                            size_hint_y: None
+                            orientation: 'vertical'
+                            height: '280dp'
+                            Image: 
+                                id: playlistImage
+                                source: 'static/happy.png'
+                            MDBoxLayout:
+                                adaptive_height: True
+                                MDSlider:
+                                    hint: False
+                                MDFloatingActionButton:
+                                    icon: 'play'
+                                    adaptive_height: True
+                                    pos_hint: {'center_x': 0.9, 'center_y': 0.8}
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: (10, 0, 10, 0)
+                         
+                        MDLabel:
+                            id: playlistname
+                            text: 'Happy Playlist'
+                            padding: (0, 20, 0, 20)
+                            font_size: 10
+                            bold: True
+                            color: 'white'
+                            font_size: 20
+                            height: self.texture_size[1]
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        padding: (20, 0, 20, 0)
+                        AudioName:
+                        MDRectangleFlatButton:
+                            text: 'playlist'
+                            pos_hint: {'center_x': 0.5}
+                            on_press: app.root.current = 'playlist'
+                            padding: (10, 5)
