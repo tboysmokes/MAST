@@ -58,7 +58,7 @@ ScreenManager:
 
                 MDBottomNavigationItem:
                     icon: 'music-note'
-                    on_tab_press: app.root.current = 'playlist'
+                    on_tab_press: app.playlistpage()
                     text: 'playlist'
                     font_size: 10
 
@@ -107,6 +107,7 @@ ScreenManager:
 
 
 <PlayListItem@MDCard>
+    id: playlistbox
     size_hint_y: None
     height: '72dp'
     md_bg_color: '#262626'
@@ -127,6 +128,7 @@ ScreenManager:
             orientation: 'vertical'
             MDScrollView:
                 MDGridLayout:
+                    id: innerbox
                     cols: 1
                     adaptive_height: True
                     padding: 0, '24dp', 0, '24dp'
@@ -378,9 +380,6 @@ ScreenManager:
     size_hint_y: None
     height: '70dp'
     MDLabel:
-        id: muiscname
-        text: 'music name is ahhahhhhhhh'
-        color: 'white'
 
 <AudioPlayer>:
     id: 'audio_player'
@@ -395,7 +394,6 @@ ScreenManager:
                     spacing: '20dp'
                     cols: 1
                     MDBoxLayout:
-                        orientation: 'vertical'
                         adaptive_height: True
                         MDCard:
                             padding: (30, 30, 30, 30)
@@ -404,6 +402,15 @@ ScreenManager:
                             size_hint_y: None
                             orientation: 'vertical'
                             height: '280dp'
+                            MDLabel:
+                                id: playlistname
+                                text: 'Happy Playlist'
+                                padding: (0, 20, 0, 20)
+                                font_size: 10
+                                bold: True
+                                color: 'white'
+                                font_size: 10
+                                height: self.texture_size[1]
                             Image: 
                                 id: playlistImage
                                 source: 'static/happy.png'
@@ -418,21 +425,15 @@ ScreenManager:
                     MDBoxLayout:
                         orientation: 'vertical'
                         padding: (10, 0, 10, 0)
-                         
-                        MDLabel:
-                            id: playlistname
-                            text: 'Happy Playlist'
-                            padding: (0, 20, 0, 20)
-                            font_size: 10
-                            bold: True
-                            color: 'white'
-                            font_size: 20
-                            height: self.texture_size[1]
                     MDBoxLayout:
+                        id: audioNameBox
                         orientation: 'vertical'
                         adaptive_height: True
                         padding: (20, 0, 20, 0)
-                        AudioName:
+                        spacing: '12dp' 
+                        MDList:
+                            id: audioNameList
+
                         MDRectangleFlatButton:
                             text: 'playlist'
                             pos_hint: {'center_x': 0.5}
