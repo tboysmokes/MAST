@@ -11,24 +11,37 @@ from firebase_admin import credentials, db, storage
 import random, os
 
 Window.size = (320, 600)
+
 load_dotenv()
 databaseurl = os.getenv('DATABASEURL')
 storagebucket = os.getenv('STORAGEBUCKET')
 
 print(databaseurl, storagebucket)
-
 cred = credentials.Certificate('mast-4ad62-firebase-adminsdk-ebtqm-7e3335028b.json')
 firebase_admin.initialize_app(cred, {'databaseURL': databaseurl,
-                                     'storageBucket': storagebucket})
-
-bucket=storage.bucket()
-auidofilename = 'ArrDee-One-Direction-ft-Bugzy-Malone-(JustNaija.com).mp3'
-audiofilepath = 'static/musicF/ArrDee-One-Direction-ft-Bugzy-Malone-(JustNaija.com).mp3'
-blod = bucket.blob(auidofilename)
-blod.upload_from_filename(audiofilepath)
+                                     'storageBucket': storagebucket
+})
 
 music_ref = db.reference('musicT')
 playlist_ref = db.reference('playlistT')
+
+playlistname = "example_mix"
+playlistdata={
+    "playlistimage": "something.png",
+    "playlistcolor": "#23a226"
+}
+
+music_ref.child(playlistname).set(playlistdata)
+
+store_ref = storage.bucket()
+audio_path = 'static/musicF/Banky-W-Yes-No.mp3'
+audio_name ='YesNo.mp3'
+boo = store_ref.blob(audio_name)
+boo.upload_from_filename(audio_path)
+
+
+
+
 
 class CreatePlaylistScreen(Screen):
     pass
