@@ -3,14 +3,33 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.uix.card import MDCard
 from kivymd.uix.label import MDLabel
-from kivymd.uix.list import MDList, TwoLineListItem
+from kivymd.uix.list import TwoLineListItem
 from kivy.core.window import Window
 import firebase_admin
-from firebase_admin import credentials
+from dotenv import load_dotenv
+from firebase_admin import credentials, db, storage
+import random, os
+
 Window.size = (320, 600)
+load_dotenv()
+databaseurl = os.getenv('DATABASEURL')
+storagebucket = os.getenv('STORAGEBUCKET')
+
+print(databaseurl, storagebucket)
 
 cred = credentials.Certificate('mast-4ad62-firebase-adminsdk-ebtqm-7e3335028b.json')
-firebase_admin.initialize_app(credential=cred)
+firebase_admin.initialize_app(cred, {'databaseURL': databaseurl,
+                                     'storageBucket': storagebucket})
+
+bucket=storage.bucket()
+auidofilename = 'ArrDee-One-Direction-ft-Bugzy-Malone-(JustNaija.com).mp3'
+audiofilepath = 'static/musicF/ArrDee-One-Direction-ft-Bugzy-Malone-(JustNaija.com).mp3'
+blod = bucket.blob(auidofilename)
+blod.upload_from_filename(audiofilepath)
+
+music_ref = db.reference('musicT')
+playlist_ref = db.reference('playlistT')
+
 class CreatePlaylistScreen(Screen):
     pass
 
@@ -55,6 +74,12 @@ class M_A_S_T(MDApp):
             playlistname2 = self.root.get_screen('createPlaylist').ids.playlistnames.text
 
 
+    def playmusic(self):
+        icon = self.root.get_screen('audio_player').ids.playicon.icon 
+        if icon == 'play':
+            self.root.get_screen('audio_player').ids.playicon.icon = 'pause'
+        elif icon == 'pause':
+             self.root.get_screen('audio_player').ids.playicon.icon = 'play'
        
 
 
@@ -67,7 +92,7 @@ class M_A_S_T(MDApp):
         if tab_name == 'happy':
             self.root.current = 'audio_player'
             screenid.ids.playlistname.text = 'Happy playlist'
-            screenid.ids.playlistImage.source = 'static/happy.png'
+            screenid.ids.playlistImage.source = 'static/burna.jpeg'
 
             muiscName = ['tomiwa', 'fikky', 'olododo', 'raheem', 'tumininu']
             for musicn in muiscName:
@@ -119,6 +144,17 @@ class M_A_S_T(MDApp):
                                     font_size=30, halign='left', padding=('10dp', '5dp')))
             screenid.add_widget(card)
 
+
+
+
+def chooseColor():
+    color = ['#706e40', '#45fc48', '#3f5efb', '#fc466b', '#224da7', '#23a226']
+    number = 0
+    for col in color:
+        number += 1
+        for _ in range[number]:
+            random_choose = random.choice(color)
+            return random_choose
 
 
 if __name__ == "__main__":
