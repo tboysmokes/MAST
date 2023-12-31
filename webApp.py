@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request
 from moodPrediction import mood_prediction
 import features
+import firebase_admin
+from firebase_admin import db, storage
 import sqlite3
 import os
 

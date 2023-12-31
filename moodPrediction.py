@@ -9,24 +9,34 @@ def mood_prediction(music):
     # data collection
     data = {
         "happy": [
-            "static/happy_love/BTS (방탄소년단) 'Butter' Official MV.mp4",
-            "static/happy_love/David Guetta & Bebe Rexha - I'm Good (Blue) [Official Music Video].mp4",
-            "static/happy_love/Ed Sheeran - Shivers [Official Performance Video].mp4",
-            "static/happy_love/Rema, Selena Gomez - Calm Down (Official Music Video).mp4",
             "static/happy_love/Rema_-_Charm.mp3",
             "static/happy_love/BTS-Dynamite-(TrendyBeatz.com).mp3",
+            "static/happy_love/Ckay-La-La-Ft-Davido-(TrendyBeatz.com).mp3",
+            "static/happy_love/Kizz-Daniel-Twe-Twe-(TrendyBeatz.com).mp3",
+            "static/happy_love/BNXN-fka-Buju-Ft-Kizz-Daniel-and-Seyi-Vibez-Gwagwalada-(TrendyBeatz.com).mp3",
+            "static/happy_love/Rema-DND-(TrendyBeatz.com).mp3",
+            "static/happy_love/Tyla-Water-(TrendyBeatz.com).mp3",
+            "static/happy_love/Davido-Ft-Adekunle-Gold-High-(TrendyBeatz.com).mp3",
+            "static/happy_love/Bnxn-Bad-Since-97-(TrendyBeatz.com).mp3"
         ],
         "sad": [
-            "static/sad_heartbreak/Adele - Someone Like You (Official Music Video).mp4",
-            "static/sad_heartbreak/Giveon - Heartbreak Anniversary (Audio).mp4",
-            "static/sad_heartbreak/Olivia Rodrigo - traitor (Official Video).mp4",
-            "static/sad_heartbreak/R.E.M. - Everybody Hurts (Official Music Video).mp4",
-            "static/sad_heartbreak/With_Or_Without_You.mp4",
             "static/sad_heartbreak/Omah_Lay_-_Reason.mp3",
             "static/sad_heartbreak/CKay-Felony-(TrendyBeatz.com).mp3",
             "static/sad_heartbreak/Juice_WRLD_-_Hear_Me_Calling_(thinknews.com.ng).mp3",
-            "static/sad_heartbreak/Lewis Capaldi - Wish You The Best (Live from The Voice).mp4",
+            "static/sad_heartbreak/Omah-Lay-I'm-A-Mess-(TrendyBeatz.com).mp3"
         ],
+        "chill": [
+            "static/chill/Melvitto-Ft-Gabzy-In-Fact-(TrendyBeatz.com).mp3",
+            "static/chill/Omah-Lay-Attention-ft-Justin-Bieber-(TrendyBeatz.com).mp3",
+            "static/chill/Omah-Lay-Do-Not-Disturb.mp3",
+            "static/chill/Qing-Madi-Ft-BNXN-Ole-New-Song-(TrendyBeatz.com).mp3",
+            "static/chill/Omah-Lay-Holy-Ghost-(TrendyBeatz.com).mp3",
+            "static/chill/Oxlade-Ft-Dave-Intoxycated-(TrendyBeatz.com).mp3",
+            "static/chill/Wizkid-Ft-Tay-Iwar-Projexx-True-Love-[TrendyBeatz.com].mp3",
+            "static/chill/Justin-Bieber-Sorry-.mp3",
+            "static/chill/Asake-Dull-New-Song-(TrendyBeatz.com).mp3",
+            "static/chill/Rema-Calm-Down-(TrendyBeatz.com).mp3"
+        ]
     }
     # feature extraction
     feature = []
@@ -65,3 +75,8 @@ def mood_prediction(music):
 
     return label_encoder.classes_[Y_pred[0]]
     # evalute the model
+
+
+audio = 'static/musicF/Banky-W-Yes-No.mp3'
+mood  = mood_prediction(audio)
+print(mood)
